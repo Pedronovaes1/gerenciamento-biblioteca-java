@@ -11,5 +11,7 @@ public class Main {
         biblioteca.mostrarLivros();
         biblioteca.removerLivro(1010);
         biblioteca.mostrarLivros();
+
+        biblioteca.buscarLivrosPorID(1010);
     }
 }

@@ -13,6 +13,7 @@ public class Biblioteca {
         this.livros = new ArrayList<>();
     }
 
+    //Métodos para adicionar, remover, buscar por livros e mostrar livros dentro da biblioteca.
     public void adicionarLivro(int id,String titulo, String autor, String editora){
             Livro livro = new Livro(id,titulo, autor, editora);
             this.livros.add(livro);
@@ -31,13 +32,41 @@ public class Biblioteca {
             System.out.println("A lista está vazia");
         }
     }
-
+    //Mostrar todos os livros da biblioteca
     public void mostrarLivros() {
         if(!livros.isEmpty()) {
-            System.out.println(livros);
+            for(int i = 0; i < this.livros.size(); i++){
+                System.out.println("Livro: "+ this.livros.get(i).getTitulo() +
+                        "; Autor: " + this.livros.get(i).getAutor()+ "; ID: " +
+                        this.livros.get(i).getId() + "; Editora: " +
+                        this.livros.get(i).getEditora());
+            }
         }else{
             System.out.println("A lista está vazia!!");
         }
     }
+
+    public void buscarLivrosPorID(int id){
+        if(!this.livros.isEmpty()){
+            for(Livro livro : this.livros){
+                if(livro.getId() == id){
+                    System.out.println("Livro: " + livro.getTitulo() +
+                            "; Autor: " + livro.getAutor()+
+                            "; ID: " + livro.getId() +
+                            "; Editora: " + livro.getEditora());
+                    break;
+                }else{
+                    System.out.println("Livro não encontrado!!");
+                    break;
+                }
+            }
+        }
+    }
+
+    // Métodos para cadastrar usuários
+    public void cadastrarUsuario(int id){
+
+    }
+    // Métodos para registrar e gerenciar empréstimos
 
 }
