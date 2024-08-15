@@ -64,7 +64,21 @@ public class Biblioteca {
     }
 
     // Métodos para cadastrar usuários
-    public void cadastrarUsuario(int id){
+    public void cadastrarUsuario(String nome, String email, String senha){
+        Usuario usuariosCadastrado = new Usuario(nome,email,senha);
+        this.usuarios.add(usuariosCadastrado);
+    }
+
+    public void mostarUsuarios(){
+        if(!this.usuarios.isEmpty()){
+            for(int i = 0; i< this.usuarios.size(); i++){
+                System.out.println("Usuário: "+ this.usuarios.get(i).getNome() + "; E-mail: " + this.usuarios.get(i).getEmail());
+            }
+        }
+    }
+
+    public void removerUsuario(String nome){
+        
 
     }
     // Métodos para registrar e gerenciar empréstimos
