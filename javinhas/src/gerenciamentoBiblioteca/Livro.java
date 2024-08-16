@@ -7,12 +7,14 @@ public class Livro {
     private String titulo;
     private String autor;
     private String editora;
+    private boolean emprestado;
 
-    public Livro(int id,String titulo, String autor, String editora) {
+    public Livro(int id, String titulo, String autor, String editora) {
         this.id = id;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
+        this.emprestado= false;
     }
 
     public int getId() {
@@ -46,6 +48,15 @@ public class Livro {
     public void setAutor(String autor) {
         this.autor = autor;
     }
+
+    public boolean isEmprestado() {
+        return emprestado;
+    }
+
+    public void setEmprestado(boolean emprestado) {
+        this.emprestado = emprestado;
+    }
+
 
     @Override
     public String toString() {

@@ -1,5 +1,8 @@
 package gerenciamentoBiblioteca;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Usuario {
 
     //atributos
@@ -35,5 +38,14 @@ public class Usuario {
 
     public void setSenha(String senha) {
         this.senha = senha;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", senha='" + senha + '\'' +
+                '}';
     }
 }
