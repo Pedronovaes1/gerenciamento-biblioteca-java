@@ -1,4 +1,4 @@
-package gerenciamentoBiblioteca;
+package gerenciamentoBiblioteca.model;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -12,7 +12,7 @@ public class Emprestimo {
     private boolean devolvido;
 
     // Construtor
-    public Emprestimo(List<Livro> livro, List<Usuario > usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
+    public Emprestimo(List<Livro> livro, List<Usuario> usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;

@@ -28,11 +28,12 @@ public class Main {
         biblioteca.removerUsuario("pedro", "1214");
         biblioteca.mostrarUsuarios();
         biblioteca.buscarUsuariosPorNome("lucas");
+        biblioteca.buscarLivrosPorID(1010);
 
-        biblioteca.emprestarLivros("pedro", 1011);
+        /*biblioteca.emprestarLivros("pedro", 1011);
         biblioteca.emprestarLivros("lucas", 1012);
         biblioteca.emprestarLivros("sabrina", 1010);
-        biblioteca.mostrarEmprestimos();
+        biblioteca.mostrarEmprestimos();*/
 
     }
 }

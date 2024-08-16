@@ -1,4 +1,4 @@
-package gerenciamentoBiblioteca;
+package gerenciamentoBiblioteca.model;
 
 public class Livro {
 

@@ -1,7 +1,4 @@
-package gerenciamentoBiblioteca;
-
-import java.util.ArrayList;
-import java.util.List;
+package gerenciamentoBiblioteca.model;
 
 public class Usuario {
 

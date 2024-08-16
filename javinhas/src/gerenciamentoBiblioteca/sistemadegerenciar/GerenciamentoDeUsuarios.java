@@ -1,4 +1,6 @@
-package gerenciamentoBiblioteca;
+package gerenciamentoBiblioteca.sistemadegerenciar;
+
+import gerenciamentoBiblioteca.model.Usuario;
 
 import java.util.ArrayList;
 import java.util.List;
