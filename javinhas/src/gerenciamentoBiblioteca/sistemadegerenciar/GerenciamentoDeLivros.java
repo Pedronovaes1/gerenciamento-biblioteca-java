@@ -61,4 +61,17 @@ public class GerenciamentoDeLivros {
             }
         }
     }
+
+    public Livro buscarLivrosPorIdEmprestimo(int id){
+        Livro livroParaEmprestimo = null;
+        if(!this.livros.isEmpty()){
+            for(Livro livro : this.livros){
+                if(livro.getId() == id){
+                    livroParaEmprestimo = livro;
+                    break;
+                }
+            }
+        }
+        return livroParaEmprestimo;
+    }
 }

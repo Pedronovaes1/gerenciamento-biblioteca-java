@@ -30,10 +30,10 @@ public class Main {
         biblioteca.buscarUsuariosPorNome("lucas");
         biblioteca.buscarLivrosPorID(1010);
 
-        /*biblioteca.emprestarLivros("pedro", 1011);
-        biblioteca.emprestarLivros("lucas", 1012);
-        biblioteca.emprestarLivros("sabrina", 1010);
-        biblioteca.mostrarEmprestimos();*/
+        biblioteca.emprestrarLivros("Pedro", 1010, 14);
+        biblioteca.mostrarEmprestimos();
+        biblioteca.devolverLivro("Pedro");
+        biblioteca.mostrarEmprestimos();
 
     }
 }

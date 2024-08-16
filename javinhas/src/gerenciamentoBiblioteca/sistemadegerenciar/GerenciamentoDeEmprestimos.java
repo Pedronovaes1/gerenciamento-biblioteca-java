@@ -1,6 +1,8 @@
 package gerenciamentoBiblioteca.sistemadegerenciar;
 
 import gerenciamentoBiblioteca.model.Emprestimo;
+import gerenciamentoBiblioteca.model.Livro;
+import gerenciamentoBiblioteca.model.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,32 +15,51 @@ public class GerenciamentoDeEmprestimos {
         this.emprestimos = new ArrayList<>();
     }
 
-    public void emprestarLivros(String nome, int id){
-        /*List<Livro> livrosParaEmpresar = new ArrayList<>();
-        List<Usuario> usuariosEmprestados = new ArrayList<>();
-
-        for(Livro livro : this.livros){
-            if(livro.getId() == id){
-                livrosParaEmpresar.add(livro);
-            }
-        }
-        for(Usuario usuario : this.usuarios){
-            if(usuario.getNome().equalsIgnoreCase(nome)){
-                usuariosEmprestados.add(usuario);
-            }
-        }
-        LocalDate dataEmprestimo = LocalDate.now();
-        Emprestimo emprestimo = new Emprestimo(livrosParaEmpresar, usuariosEmprestados, dataEmprestimo,14);
-        this.emprestimos.add(emprestimo);*/
+    public void emprestarLivros(Livro livro, Usuario usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
+       Emprestimo emprestimo = new Emprestimo(livro, usuario, dataEmprestimo, diasDeEmprestimo);
+       this.emprestimos.add(emprestimo);
     }
 
-    /*public void mostrarEmprestimos(){
-        for (int i = 0; i < this.emprestimos.size(); i++){
-            System.out.println("Usuário: " + usuarios.get(i).getNome() +
-                    "; E-mail: " + usuarios.get(i).getEmail() +
-                    "; Livro Empresado: " + livros.get(i).getTitulo()+
-                    "; Devolver: " + emprestimos.get(i).getDataDevolucaoPrevista() +
-                    "; ID: " + livros.get(i).getId());
+    public boolean checarUsuario(Usuario usuario) {
+        boolean checar = false;
+        if(!this.emprestimos.isEmpty()){
+            for(Emprestimo emprestimo: this.emprestimos){
+                if(emprestimo.getUsuario().equals(usuario)){
+                    checar = true;
+                }
+            }
+        }else{
+            checar = false;
         }
-    }*/
+        return checar;
+    }
+
+    public void mostrarEmprestimos(){
+        if(!this.emprestimos.isEmpty()){
+            for(int i = 0; i<this.emprestimos.size(); i++){
+                System.out.println("-----Emprestimos Cadastrados-----: \nUsuário: " + this.emprestimos.get(i).getUsuario().getNome() +
+                        "; Livro "+  this.emprestimos.get(i).getLivro().getTitulo() +
+                        "; Data de devolução: " + this.emprestimos.get(i).getDataDevolucaoPrevista() +
+                        "; ID do livro: " + this.emprestimos.get(i).getLivro().getId());
+            }
+        }else{
+            System.out.println("Não tem emprestimos feitos");
+        }
+    }
+
+    public void devolverEmprestimo(Usuario usuario){
+        List<Emprestimo> emprestimosParaRemover = new ArrayList<>();
+        if(!this.emprestimos.isEmpty()){
+            for(Emprestimo emprestimo: this.emprestimos){
+                if(emprestimo.getUsuario() == usuario){
+                    emprestimosParaRemover.add(emprestimo);
+                    break;
+                }
+            }
+            this.emprestimos.removeAll(emprestimosParaRemover);
+        }else{
+            System.out.println("Lista de emprestimos está vazia!!");
+        }
+    }
+
 }

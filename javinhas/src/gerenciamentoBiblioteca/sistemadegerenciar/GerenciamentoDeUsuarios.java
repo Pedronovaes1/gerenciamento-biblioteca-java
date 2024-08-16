@@ -53,4 +53,19 @@ public class GerenciamentoDeUsuarios {
             System.out.println("Está vazio o sistema de usuários");
         }
     }
+
+    public Usuario buscarUsuarioPorNomeEmprestimo(String nome){
+        Usuario usuarioParaEmprestimo = null;
+        if(!this.usuarios.isEmpty()){
+            for(Usuario usuario : this.usuarios){
+                if(usuario.getNome().equalsIgnoreCase(nome)){
+                   usuarioParaEmprestimo = usuario;
+                }
+            }
+        }else{
+            System.out.println("Está vazio o sistema de usuários");
+        }
+
+        return usuarioParaEmprestimo;
+    }
 }

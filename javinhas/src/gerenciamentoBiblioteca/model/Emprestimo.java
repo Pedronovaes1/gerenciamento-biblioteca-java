@@ -5,14 +5,14 @@ import java.util.List;
 
 public class Emprestimo {
 
-    private List<Livro> livro;
-    private List<Usuario> usuario;
+    private Livro livro;
+    private Usuario usuario;
     private LocalDate dataEmprestimo;
     private LocalDate dataDevolucaoPrevista;
     private boolean devolvido;
 
     // Construtor
-    public Emprestimo(List<Livro> livro, List<Usuario> usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
+    public Emprestimo(Livro livro, Usuario usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
         this.livro = livro;
         this.usuario = usuario;
         this.dataEmprestimo = dataEmprestimo;
@@ -20,11 +20,11 @@ public class Emprestimo {
         this.devolvido = false;
     }
 
-    public List<Livro> getLivro() {
+    public Livro getLivro() {
         return livro;
     }
 
-    public List<Usuario> getUsuario() {
+    public Usuario getUsuario() {
         return usuario;
     }
 

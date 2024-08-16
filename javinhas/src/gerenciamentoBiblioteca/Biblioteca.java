@@ -1,12 +1,13 @@
 package gerenciamentoBiblioteca;
 
+import gerenciamentoBiblioteca.model.Livro;
+import gerenciamentoBiblioteca.model.Usuario;
 import gerenciamentoBiblioteca.sistemadegerenciar.GerenciamentoDeEmprestimos;
 import gerenciamentoBiblioteca.sistemadegerenciar.GerenciamentoDeLivros;
 import gerenciamentoBiblioteca.sistemadegerenciar.GerenciamentoDeUsuarios;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
+
 
 public class Biblioteca {
     //atributos
@@ -23,6 +24,7 @@ public class Biblioteca {
     //Métodos para adicionar, remover, buscar por livros e mostrar livros dentro da biblioteca.
     public void adicionarLivro(int id,String titulo, String autor, String editora){
             gerenciamentoDeLivros.adicionarLivro(id, titulo, autor, editora);
+            System.out.println("Cadastrado com sucesso!");
     }
 
     public void removerLivro(int id){
@@ -54,5 +56,25 @@ public class Biblioteca {
         gerenciamentoDeUsuarios.buscarUsuariosPorNome(nome);
     }
     // Métodos para registrar e gerenciar empréstimos
+    public void emprestrarLivros(String nome, int id, int dias){
+        Livro livro = gerenciamentoDeLivros.buscarLivrosPorIdEmprestimo(id);
+        Usuario usuario = gerenciamentoDeUsuarios.buscarUsuarioPorNomeEmprestimo(nome);
+        LocalDate diaEmprestimo = LocalDate.now();
+        if(gerenciamentoDeEmprestimos.checarUsuario(usuario) == false){
+            gerenciamentoDeEmprestimos.emprestarLivros(livro,usuario, diaEmprestimo, dias);
+            LocalDate diaDevolucao = diaEmprestimo.plusDays(dias);
+            System.out.println("Empréstimo concluido!! Data de entrega: " + diaDevolucao);
+        }else{
+            System.out.println("O Usuário está pedente");
+        }
+    }
 
+    public void mostrarEmprestimos(){
+        gerenciamentoDeEmprestimos.mostrarEmprestimos();
+    }
+
+    public void devolverLivro(String nome){
+        Usuario usuario = gerenciamentoDeUsuarios.buscarUsuarioPorNomeEmprestimo(nome);
+        gerenciamentoDeEmprestimos.devolverEmprestimo(usuario);
+    }
 }
