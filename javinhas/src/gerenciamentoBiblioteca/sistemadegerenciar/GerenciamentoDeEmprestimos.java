@@ -21,17 +21,14 @@ public class GerenciamentoDeEmprestimos {
     }
 
     public boolean checarUsuario(Usuario usuario) {
-        boolean checar = false;
         if(!this.emprestimos.isEmpty()){
             for(Emprestimo emprestimo: this.emprestimos){
                 if(emprestimo.getUsuario().equals(usuario)){
-                    checar = true;
+                    return true;
                 }
             }
-        }else{
-            checar = false;
         }
-        return checar;
+        return false;
     }
 
     public void mostrarEmprestimos(){

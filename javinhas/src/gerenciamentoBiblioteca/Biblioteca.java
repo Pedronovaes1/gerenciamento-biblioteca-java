@@ -22,8 +22,8 @@ public class Biblioteca {
     }
 
     //Métodos para adicionar, remover, buscar por livros e mostrar livros dentro da biblioteca.
-    public void adicionarLivro(int id,String titulo, String autor, String editora){
-            gerenciamentoDeLivros.adicionarLivro(id, titulo, autor, editora);
+    public void adicionarLivro(String titulo, String autor, String editora){
+            gerenciamentoDeLivros.adicionarLivro(titulo, autor, editora);
             System.out.println("Cadastrado com sucesso!");
     }
 
@@ -35,7 +35,7 @@ public class Biblioteca {
         gerenciamentoDeLivros.mostrarLivros();
     }
 
-    public void buscarLivrosPorID(int id){
+    public void buscarLivrosPorID(int id) throws Exception {
         gerenciamentoDeLivros.buscarLivrosPorID(id);
     }
 
@@ -56,6 +56,7 @@ public class Biblioteca {
         gerenciamentoDeUsuarios.buscarUsuariosPorNome(nome);
     }
     // Métodos para registrar e gerenciar empréstimos
+    /*
     public void emprestrarLivros(String nome, int id, int dias){
         Livro livro = gerenciamentoDeLivros.buscarLivrosPorIdEmprestimo(id);
         Usuario usuario = gerenciamentoDeUsuarios.buscarUsuarioPorNomeEmprestimo(nome);
@@ -67,9 +68,9 @@ public class Biblioteca {
         }else{
             System.out.println("O Usuário está pedente");
         }
-    }
+    }*/
 
-    public void mostrarEmprestimos(){
+    public void mostrarEmprestimos() {
         gerenciamentoDeEmprestimos.mostrarEmprestimos();
     }
 

@@ -3,14 +3,16 @@ package gerenciamentoBiblioteca.model;
 public class Livro {
 
     //atributos
+    static int contadorId = 0;
     private int id;
     private String titulo;
     private String autor;
     private String editora;
+
     private boolean emprestado;
 
-    public Livro(int id, String titulo, String autor, String editora) {
-        this.id = id;
+    public Livro(String titulo, String autor, String editora) {
+        this.id = ++contadorId;
         this.titulo = titulo;
         this.autor = autor;
         this.editora = editora;
@@ -55,6 +57,10 @@ public class Livro {
 
     public void setEmprestado(boolean emprestado) {
         this.emprestado = emprestado;
+    }
+
+    public static int getContadorId() {
+        return contadorId;
     }
 
 

@@ -2,68 +2,44 @@ package gerenciamentoBiblioteca.sistemadegerenciar;
 
 import gerenciamentoBiblioteca.model.Livro;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GerenciamentoDeLivros {
-    private List<Livro> livros;
+    private Map<Integer, Livro> livros;
 
     public GerenciamentoDeLivros() {
-        this.livros = new ArrayList<>();
+        this.livros = new HashMap<>();
     }
 
-    public void adicionarLivro(int id,String titulo, String autor, String editora) {
-        Livro livro = new Livro(id,titulo, autor, editora);
-        this.livros.add(livro);
+    public void adicionarLivro(String titulo, String autor, String editora) {
+        Livro livro = new Livro(titulo, autor, editora);
+        this.livros.put(livro.getId(),livro);
     }
 
     public void removerLivro(int id) {
-        List<Livro> livrosParaRemover = new ArrayList<>();
-
-        if(!this.livros.isEmpty()){
-            for(Livro livro: this.livros){
-                if(livro.getId() == id){
-                    livrosParaRemover.add(livro);
-                }
-            }
-            this.livros.removeAll(livrosParaRemover);
-        }else{
-            System.out.println("A lista está vazia");
-        }
+        livros.remove(id);
     }
 
     public void mostrarLivros() {
         if(!livros.isEmpty()) {
-            for(int i = 0; i < this.livros.size(); i++){
-                System.out.println("Livro: "+ this.livros.get(i).getTitulo() +
-                        "; Autor: " + this.livros.get(i).getAutor()+ "; ID: " +
-                        this.livros.get(i).getId() + "; Editora: " +
-                        this.livros.get(i).getEditora());
-            }
+            System.out.println(livros);
         }else{
             System.out.println("A lista está vazia!!");
         }
     }
 
-    public void buscarLivrosPorID(int id){
-        if(!this.livros.isEmpty()){
-            for(Livro livro : this.livros){
-                if(livro.getId() == id){
-                    System.out.println("Livro: " + livro.getTitulo() +
-                            "; Autor: " + livro.getAutor()+
-                            "; ID: " + livro.getId() +
-                            "; Editora: " + livro.getEditora());
-                    break;
-                }else{
-                    System.out.println("Livro não encontrado!!");
-                    break;
-                }
-            }
+    public void buscarLivrosPorID(int id) throws Exception {
+        if(this.livros.containsKey(id) == true){
+            System.out.println( "Livro: " + livros.get(id).getTitulo() +
+                    "; Autor: " + livros.get(id).getAutor());
+        }else{
+            throw new Exception("O livro não foi encontrado");
         }
     }
 
-    public Livro buscarLivrosPorIdEmprestimo(int id){
-        Livro livroParaEmprestimo = null;
+    /* public Livro buscarLivrosPorIdEmprestimo(int id){
+       Livro livroParaEmprestimo = null;
         if(!this.livros.isEmpty()){
             for(Livro livro : this.livros){
                 if(livro.getId() == id){
@@ -73,5 +49,5 @@ public class GerenciamentoDeLivros {
             }
         }
         return livroParaEmprestimo;
-    }
+    }*/
 }
