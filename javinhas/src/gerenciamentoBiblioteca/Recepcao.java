@@ -28,6 +28,11 @@ public class Recepcao {
 
             System.out.println("Nome do autor: ");
             String autor = sc.next();
+
+            System.out.println("Nome da editora: ");
+            String editora = sc.next();
+
+            biblioteca.adicionarLivro(nomeLivro, autor, editora);
         }
 
 
