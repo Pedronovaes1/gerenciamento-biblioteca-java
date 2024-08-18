@@ -22,20 +22,20 @@ public class Main {
         biblioteca.buscarLivrosPorID(3);
 
         // Testes de cadastrar usuaário
-       /* biblioteca.cadastrarUsuario("Pedro","skkssk@gmail.com", "1234");
+        biblioteca.cadastrarUsuario("Pedro","skkssk@gmail.com", "1234");
         biblioteca.mostrarUsuarios();
         biblioteca.cadastrarUsuario("Lucas", "skkssk@gmail.com","24324");
         biblioteca.cadastrarUsuario("Sabrina","skkssk@gmail.com", "3349");
         biblioteca.mostrarUsuarios();
-        biblioteca.removerUsuario("pedro", "1214");
         biblioteca.mostrarUsuarios();
         biblioteca.buscarUsuariosPorNome("lucas");
-        biblioteca.buscarLivrosPorID(1010);
 
-        biblioteca.emprestrarLivros("Pedro", 1010, 14);
+
+        biblioteca.emprestrarLivros("Pedro", 1, 14);
         biblioteca.mostrarEmprestimos();
-        biblioteca.devolverLivro("Pedro");
-        biblioteca.mostrarEmprestimos();*/
+        biblioteca.emprestrarLivros("Sabrina", 3, 14);
+        biblioteca.emprestrarLivros("Lucas", 3, 14);
+        biblioteca.mostrarEmprestimos();
 
     }
 }

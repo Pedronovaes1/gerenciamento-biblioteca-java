@@ -56,19 +56,18 @@ public class Biblioteca {
         gerenciamentoDeUsuarios.buscarUsuariosPorNome(nome);
     }
     // Métodos para registrar e gerenciar empréstimos
-    /*
+
     public void emprestrarLivros(String nome, int id, int dias){
         Livro livro = gerenciamentoDeLivros.buscarLivrosPorIdEmprestimo(id);
         Usuario usuario = gerenciamentoDeUsuarios.buscarUsuarioPorNomeEmprestimo(nome);
         LocalDate diaEmprestimo = LocalDate.now();
-        if(gerenciamentoDeEmprestimos.checarUsuario(usuario) == false){
-            gerenciamentoDeEmprestimos.emprestarLivros(livro,usuario, diaEmprestimo, dias);
-            LocalDate diaDevolucao = diaEmprestimo.plusDays(dias);
-            System.out.println("Empréstimo concluido!! Data de entrega: " + diaDevolucao);
-        }else{
-            System.out.println("O Usuário está pedente");
-        }
-    }*/
+
+        gerenciamentoDeEmprestimos.emprestarLivros(livro,usuario, diaEmprestimo, dias);
+        LocalDate diaDevolucao = diaEmprestimo.plusDays(dias);
+
+        System.out.println("Empréstimo concluido!! Data de entrega: " + diaDevolucao);
+
+    }
 
     public void mostrarEmprestimos() {
         gerenciamentoDeEmprestimos.mostrarEmprestimos();

@@ -6,7 +6,9 @@ import gerenciamentoBiblioteca.model.Usuario;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class GerenciamentoDeEmprestimos {
     private List<Emprestimo> emprestimos;
@@ -16,47 +18,36 @@ public class GerenciamentoDeEmprestimos {
     }
 
     public void emprestarLivros(Livro livro, Usuario usuario, LocalDate dataEmprestimo, int diasDeEmprestimo) {
-       Emprestimo emprestimo = new Emprestimo(livro, usuario, dataEmprestimo, diasDeEmprestimo);
-       this.emprestimos.add(emprestimo);
-    }
-
-    public boolean checarUsuario(Usuario usuario) {
-        if(!this.emprestimos.isEmpty()){
-            for(Emprestimo emprestimo: this.emprestimos){
-                if(emprestimo.getUsuario().equals(usuario)){
-                    return true;
-                }
-            }
-        }
-        return false;
+        Emprestimo emprestimo = new Emprestimo(livro, usuario, dataEmprestimo, diasDeEmprestimo);
+        this.emprestimos.add(emprestimo);
     }
 
     public void mostrarEmprestimos(){
-        if(!this.emprestimos.isEmpty()){
-            for(int i = 0; i<this.emprestimos.size(); i++){
-                System.out.println("-----Emprestimos Cadastrados-----: \nUsuário: " + this.emprestimos.get(i).getUsuario().getNome() +
-                        "; Livro "+  this.emprestimos.get(i).getLivro().getTitulo() +
-                        "; Data de devolução: " + this.emprestimos.get(i).getDataDevolucaoPrevista() +
-                        "; ID do livro: " + this.emprestimos.get(i).getLivro().getId());
+        if(!this.emprestimos.isEmpty()) {
+            System.out.println("----Emprestimos----");
+            for(Emprestimo emprestimo: this.emprestimos){
+                System.out.println("Nome do usuário: " + emprestimo.getUsuario().getNome() +
+                        "; Livro: " + emprestimo.getLivro().getTitulo() +
+                        "; ID: " + emprestimo.getLivro().getId());
             }
+            System.out.println("----Finalizando Emprestimos----");
         }else{
-            System.out.println("Não tem emprestimos feitos");
+            throw new IllegalArgumentException("Lista vazia");
         }
     }
 
     public void devolverEmprestimo(Usuario usuario){
         List<Emprestimo> emprestimosParaRemover = new ArrayList<>();
-        if(!this.emprestimos.isEmpty()){
+        if(this.emprestimos.isEmpty()) {
+            throw new IllegalArgumentException("Lista vazia");
+        }else{
             for(Emprestimo emprestimo: this.emprestimos){
-                if(emprestimo.getUsuario() == usuario){
+                if(emprestimo.getUsuario().equals(usuario)){
                     emprestimosParaRemover.add(emprestimo);
-                    break;
                 }
             }
-            this.emprestimos.removeAll(emprestimosParaRemover);
-        }else{
-            System.out.println("Lista de emprestimos está vazia!!");
         }
+        emprestimos.removeAll(emprestimosParaRemover);
     }
 
 }

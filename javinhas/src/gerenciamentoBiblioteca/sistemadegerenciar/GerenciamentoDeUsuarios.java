@@ -2,70 +2,53 @@ package gerenciamentoBiblioteca.sistemadegerenciar;
 
 import gerenciamentoBiblioteca.model.Usuario;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 public class GerenciamentoDeUsuarios {
-    private List<Usuario> usuarios;
+    private Map<String,Usuario> usuarios;
 
     public GerenciamentoDeUsuarios() {
-        this.usuarios = new ArrayList<>();
+        this.usuarios = new HashMap<>();
     }
 
     public void cadastrarUsuario(String nome, String email, String senha){
         Usuario usuariosCadastrado = new Usuario(nome,email,senha);
-        this.usuarios.add(usuariosCadastrado);
+        this.usuarios.put(nome.toLowerCase(),usuariosCadastrado);
     }
 
     public void mostrarUsuarios(){
-        if(!this.usuarios.isEmpty()){
-            for(int i = 0; i< this.usuarios.size(); i++){
-                System.out.println("Usuário: "+ this.usuarios.get(i).getNome() + "; E-mail: " + this.usuarios.get(i).getEmail());
-            }
+        if(this.usuarios.isEmpty()){
+            throw new IllegalArgumentException("Lista vazia");
+        }else{
+            usuarios.values().forEach(user -> System.out.println("Nome: " + user.getNome() +
+                    "; Email: " + user.getEmail() +
+                    "; Senha: " + user.getSenha()));
         }
     }
 
     public void removerUsuario(String nome, String senha){
-        List<Usuario> usuariosParaRemover = new ArrayList<>();
-        if(!this.usuarios.isEmpty()){
-            for(Usuario usuario : this.usuarios){
-                if(usuario.getNome().equalsIgnoreCase(nome) && usuario.getSenha().equalsIgnoreCase(senha)){
-                    usuariosParaRemover.add(usuario);
-                }else{
-                    System.out.println("O usuário não consta no sistema para ser removido");
-                    break;
-                }
-                usuarios.removeAll(usuariosParaRemover);
-            }
-        }else{
-            System.out.println("Não tem usuário cadastrado no sistema");
+        Usuario usuario = this.usuarios.remove(nome);
+        if(usuario == null){
+            throw new IllegalArgumentException("O Usuário " + usuario.getNome() + " Não está na lista!!");
         }
     }
 
     public void buscarUsuariosPorNome(String nome){
-        if(!this.usuarios.isEmpty()){
-            for(Usuario usuario : this.usuarios){
-                if(usuario.getNome().equalsIgnoreCase(nome)){
-                    System.out.println("Usuario: "+ usuario.getNome() + "; E-mail: " + usuario.getEmail());
-                }
-            }
-        }else{
-            System.out.println("Está vazio o sistema de usuários");
+        if(this.usuarios.containsKey(nome)){
+            System.out.println("Nome: " + usuarios.get(nome).getNome() +
+                    "; Email: " + usuarios.get(nome).getEmail());
         }
     }
 
     public Usuario buscarUsuarioPorNomeEmprestimo(String nome){
-        Usuario usuarioParaEmprestimo = null;
-        if(!this.usuarios.isEmpty()){
-            for(Usuario usuario : this.usuarios){
-                if(usuario.getNome().equalsIgnoreCase(nome)){
-                   usuarioParaEmprestimo = usuario;
+        if(!this.usuarios.containsKey(nome) == true){
+            for(Usuario usuario : this.usuarios.values()){
+                if(usuario.getNome().equals(nome)){
+                    return usuario;
                 }
             }
-        }else{
-            System.out.println("Está vazio o sistema de usuários");
         }
-
-        return usuarioParaEmprestimo;
+        return null;
     }
 }

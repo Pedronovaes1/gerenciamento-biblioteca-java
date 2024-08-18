@@ -18,14 +18,21 @@ public class GerenciamentoDeLivros {
     }
 
     public void removerLivro(int id) {
-        livros.remove(id);
+        Livro livro = livros.remove(id);
+        if (livro == null) {
+            throw  new IllegalArgumentException("Livro com o ID " + id + " não foi encontrado.");
+        }
     }
 
     public void mostrarLivros() {
-        if(!livros.isEmpty()) {
-            System.out.println(livros);
+        if(this.livros.isEmpty()){
+            System.out.println("Lista vazia");
         }else{
-            System.out.println("A lista está vazia!!");
+            livros.values().forEach(livro ->
+                    System.out.println("Livro: " + livro.getTitulo() +
+                            "; Autor: " + livro.getAutor() +
+                            "; Editora: " + livro.getEditora()+
+                            "; ID: " + livro.getId()));
         }
     }
 
@@ -38,16 +45,14 @@ public class GerenciamentoDeLivros {
         }
     }
 
-    /* public Livro buscarLivrosPorIdEmprestimo(int id){
-       Livro livroParaEmprestimo = null;
-        if(!this.livros.isEmpty()){
-            for(Livro livro : this.livros){
+    public Livro buscarLivrosPorIdEmprestimo(int id){
+        if(this.livros.containsKey(id) == true){
+            for(Livro livro : this.livros.values()){
                 if(livro.getId() == id){
-                    livroParaEmprestimo = livro;
-                    break;
+                    return livro;
                 }
             }
         }
-        return livroParaEmprestimo;
-    }*/
+        return null;
+    }
 }

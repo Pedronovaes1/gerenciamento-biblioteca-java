@@ -1,7 +1,6 @@
 package gerenciamentoBiblioteca.model;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class Emprestimo {
 

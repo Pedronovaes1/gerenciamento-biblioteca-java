@@ -59,10 +59,7 @@ public class Livro {
         this.emprestado = emprestado;
     }
 
-    public static int getContadorId() {
-        return contadorId;
-    }
-
+    public static int getContadorId() {return contadorId;}
 
     @Override
     public String toString() {
