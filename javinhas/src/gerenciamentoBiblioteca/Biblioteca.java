@@ -73,7 +73,7 @@ public class Biblioteca {
         gerenciamentoDeEmprestimos.mostrarEmprestimos();
     }
 
-    public void devolverLivro(String nome){
+    public void devolverEmprestimo(String nome){
         Usuario usuario = gerenciamentoDeUsuarios.buscarUsuarioPorNomeEmprestimo(nome);
         gerenciamentoDeEmprestimos.devolverEmprestimo(usuario);
     }

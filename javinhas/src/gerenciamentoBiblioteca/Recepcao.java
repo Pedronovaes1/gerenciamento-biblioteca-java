@@ -3,39 +3,133 @@ package gerenciamentoBiblioteca;
 import java.util.Scanner;
 
 public class Recepcao {
-    public static void main(String[] args) {
-        // Classes chamadas.
-        Scanner sc = new Scanner(System.in);
-        Biblioteca biblioteca = new Biblioteca();
+    private Biblioteca gerenciamentoDeBiblioteca;
 
-        // Lógica de programação: Gerenciamento de Biblioteca
+    public Recepcao() {
+        this.gerenciamentoDeBiblioteca = new Biblioteca();
+    }
 
-        System.out.println("-----Bem-vindos ao Sistema da Biblioteca Nacional----");
+    public void iniciar() {
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
 
-        System.out.println("O que deseja fazer: \n" +
-                " Aperte 1: Cadastrar um novo Livro \n" +
-                " Aperte 2: Cadastrar um novo usuário \n" +
-                " Aperte 3: Fazer um empréstimo de livros \n" +
-                " Aperte 4: Remover um livro \n" +
-                " Aperte 5: Remover um usuário \n" +
-                " Aperte 6: Devolver um livro \n" +
-                " Aperte 7: Analisar Sistema de Livros, usuários e empréstimos");
-        int opcao = sc.nextInt();
+        do {
+            mostrarMenu();
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();  // Consome a nova linha
 
-        if(opcao == 1){
-            System.out.println("Nome do livro: ");
-            String nomeLivro = sc.next();
+            switch (opcao) {
+                case 1:
+                    adicionarLivro(scanner);
+                    break;
+                case 2:
+                    removerLivro(scanner);
+                    break;
+                case 3:
+                    mostrarLivros();
+                    break;
+                case 4:
+                    cadastrarUsuario(scanner);
+                    break;
+                case 5:
+                    removerUsuario(scanner);
+                    break;
+                case 6:
+                    mostrarUsuarios();
+                    break;
+                case 7:
+                    registrarEmprestimo(scanner);
+                    break;
+                case 8:
+                    devolverLivro(scanner);
+                    break;
+                case 9:
+                    mostrarEmprestimos();
+                    break;
+                case 0:
+                    System.out.println("Saindo...");
+                    break;
+                default:
+                    System.out.println("Opção inválida! Tente novamente.");
+            }
+        } while (opcao != 0);
+    }
 
-            System.out.println("Nome do autor: ");
-            String autor = sc.next();
+    private void mostrarMenu() {
+        System.out.println("\n--- Menu de Gerenciamento da Biblioteca ---");
+        System.out.println("1. Adicionar Livro");
+        System.out.println("2. Remover Livro");
+        System.out.println("3. Mostrar Livros");
+        System.out.println("4. Cadastrar Usuário");
+        System.out.println("5. Remover Usuário");
+        System.out.println("6. Mostrar Usuários");
+        System.out.println("7. Registrar Empréstimo");
+        System.out.println("8. Devolver Livro");
+        System.out.println("9. Mostrar Empréstimos");
+        System.out.println("0. Sair");
+    }
 
-            System.out.println("Nome da editora: ");
-            String editora = sc.next();
+    private void adicionarLivro(Scanner scanner) {
+        scanner.nextLine();  // Consome a nova linha
+        System.out.print("Título: ");
+        String titulo = scanner.nextLine();
+        System.out.print("Autor: ");
+        String autor = scanner.nextLine();
+        System.out.print("Editora: ");
+        String editora = scanner.nextLine();
+        gerenciamentoDeBiblioteca.adicionarLivro(titulo, autor, editora);
+    }
 
-            biblioteca.adicionarLivro(nomeLivro, autor, editora);
-        }
+    private void removerLivro(Scanner scanner) {
+        System.out.print("ID do Livro a remover: ");
+        int id = scanner.nextInt();
+        gerenciamentoDeBiblioteca.removerLivro(id);
+    }
 
+    private void mostrarLivros() {
+        gerenciamentoDeBiblioteca.mostrarLivros();
+    }
 
+    private void cadastrarUsuario(Scanner scanner) {
+        System.out.print("Nome do Usuário: ");
+        String nome = scanner.nextLine();
+        System.out.print("E-mail: ");
+        String email = scanner.nextLine();
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+        gerenciamentoDeBiblioteca.cadastrarUsuario(nome, email, senha);
+    }
 
+    private void removerUsuario(Scanner scanner) {
+        System.out.print("Nome do Usuário: ");
+        String nome = scanner.nextLine();
+        System.out.print("Senha: ");
+        String senha = scanner.nextLine();
+        gerenciamentoDeBiblioteca.removerUsuario(nome, senha);
+    }
+
+    private void mostrarUsuarios() {
+        gerenciamentoDeBiblioteca.mostrarUsuarios();
+    }
+
+    private void registrarEmprestimo(Scanner scanner) {
+        System.out.print("Nome do Usuário: ");
+        String nomeUsuario = scanner.nextLine();
+        System.out.print("ID do Livro: ");
+        int idLivro = scanner.nextInt();
+        System.out.print("Dias de Empréstimo: ");
+        int dias = scanner.nextInt();
+        gerenciamentoDeBiblioteca.emprestrarLivros(nomeUsuario,idLivro, dias);
+    }
+
+    private void devolverLivro(Scanner scanner) {
+        System.out.print("Nome do Usuário que deseja devolver o livro: ");
+        String nomeUsuario = scanner.nextLine();
+        gerenciamentoDeBiblioteca.devolverEmprestimo(nomeUsuario);
+    }
+
+    private void mostrarEmprestimos() {
+        gerenciamentoDeBiblioteca.mostrarEmprestimos();
     }
 }
